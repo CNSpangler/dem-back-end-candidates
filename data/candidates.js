@@ -1,6 +1,4 @@
-// import { yieldExpression } from "@babel/types"
-
-export default candidates = [
+module.exports = [
     {
         name: `Pete Buttigieg`,
         born: 1982,
@@ -29,7 +27,7 @@ export default candidates = [
         name: `Amy Klobuchar`,
         born: 1960,
         running: true,
-        identity: `From the Midwest, and So Can You!`
+        identity: `From the Midwest, and So Can You!`,
         img: `https://img.apmcdn.org/690942adfac1eeda3419f1e83b3b7cd19750d80c/widescreen/941bbc-20180930-klobucharsnl01.jpg`
     },
 

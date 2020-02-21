@@ -1,12 +1,7 @@
-// load connection string from .env
 require('dotenv').config();
-// "require" pg (after `npm i pg`)
 const pg = require('pg');
-// Use the pg Client
 const Client = pg.Client;
-// **note:** you will need to create the database!
 
-// async/await needs to run in a function
 run();
 
 async function run() {
@@ -19,7 +14,13 @@ async function run() {
     
         // run a query to create tables
         await client.query(`
-          
+            CREATE TABLE candidates (
+                name VARCHAR(256) NOT NULL,
+                born INTEGER NOT NULL,
+                running BOOLEAN NOT NULL,
+                identity VARCHAR(256) NOT NULL,
+                img VARCHAR(256) NOT NULL
+            );
         `);
 
         console.log('create tables complete');
@@ -31,6 +32,5 @@ async function run() {
     finally {
         // success or failure, need to close the db connection
         client.end();
-    }
-    
+    }   
 }

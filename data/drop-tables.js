@@ -11,7 +11,7 @@ async function run() {
         await client.connect();
     
         await client.query(`
-
+        DROP TABLE candidates;
         `);
 
         console.log('drop tables complete');
@@ -22,5 +22,4 @@ async function run() {
     finally {
         client.end();
     }
-    
 }
