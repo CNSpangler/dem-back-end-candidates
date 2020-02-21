@@ -1,1 +1,0 @@
-// have installed superagent, supertest, express, nodemon, jest
