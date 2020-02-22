@@ -12,6 +12,7 @@ async function run() {
     
         await client.query(`
         DROP TABLE candidates;
+        DROP TABLE types;
         `);
 
         console.log('drop tables complete');

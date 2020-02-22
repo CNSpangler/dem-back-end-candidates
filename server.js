@@ -35,7 +35,7 @@ app.use(cors()); // enable CORS request
 
 app.get('/', (req, res) => res.send(`Get dem candidates`));
 
-app.get('/api/candidates', async(req, res, next) => {
+app.get('/api/candidates', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT
@@ -45,6 +45,23 @@ app.get('/api/candidates', async(req, res, next) => {
                 identity,
                 img
             FROM CANDIDATES;
+        `);
+
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
+app.get('/api/types', async(req, res) => {
+    try {
+        const result = await client.query(`
+            SELECT
+                type_id,
+                type
+            FROM types;
         `);
 
         res.json(result.rows);

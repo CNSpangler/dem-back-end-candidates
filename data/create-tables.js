@@ -15,18 +15,24 @@ async function run() {
         // run a query to create tables
         await client.query(`
             CREATE TABLE candidates (
+                id SERIAL PRIMARY KEY NOT NULL,
                 name VARCHAR(256) NOT NULL,
                 born INTEGER NOT NULL,
+                type_id INTEGER NOT NULL REFERENCES types(type_id),
                 running BOOLEAN NOT NULL,
                 identity VARCHAR(256) NOT NULL,
                 img VARCHAR(256) NOT NULL
+            )
+
+            CREATE TABLE types (
+                type_id SERIAL PRIMARY KEY NOT NULL,
+                type VARCHAR(256) NOT NULL,
             );
         `);
 
         console.log('create tables complete');
     }
     catch (err) {
-        // problem? let's see the error...
         console.log(err);
     }
     finally {
