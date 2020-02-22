@@ -14,6 +14,11 @@ async function run() {
     
         // run a query to create tables
         await client.query(`
+            CREATE TABLE types (
+                type_id SERIAL PRIMARY KEY NOT NULL,
+                type VARCHAR(256) NOT NULL
+            );
+
             CREATE TABLE candidates (
                 id SERIAL PRIMARY KEY NOT NULL,
                 name VARCHAR(256) NOT NULL,
@@ -22,11 +27,6 @@ async function run() {
                 running BOOLEAN NOT NULL,
                 identity VARCHAR(256) NOT NULL,
                 img VARCHAR(256) NOT NULL
-            )
-
-            CREATE TABLE types (
-                type_id SERIAL PRIMARY KEY NOT NULL,
-                type VARCHAR(256) NOT NULL,
             );
         `);
 

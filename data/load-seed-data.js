@@ -1,3 +1,6 @@
+//seed data for types won't fucking work
+//needs 'distinct' to work somehow
+
 require('dotenv').config();
 const pg = require('pg');
 const Client = pg.Client;
@@ -16,7 +19,7 @@ async function run() {
         const savedTypes = await Promise.all(
             types.map(async type => {
                 const result = await client.query(`
-                    INSERT INTO types (type)
+                    INSERT DISTINCT INTO types (type)
                     VALUES ($1)
                     RETURNING *;
                 `,
@@ -24,14 +27,16 @@ async function run() {
                 return result.rows[0];
             })
         );
+        console.log(savedTypes);
 
         // "Promise all" does a parallel execution of async tasks
         await Promise.all(
             // for every cat data, we want a promise to insert into the db
             candidates.map(candidate => {
-                savedTypes.find(type => {
-                    return type.type_id === candidate.type_id;
+                const candidateType = savedTypes.find(type => {
+                    return type.type === candidate.type;
                 });
+                console.log(candidateType);
 
                 // This is the query to insert a cat into the db.
                 // First argument is the function is the "parameterized query"
@@ -40,7 +45,7 @@ async function run() {
                     VALUES ($1, $2, $3, $4, $5);
                 `,
                     // Second argument is an array of values for each parameter in the query:
-                [candidate.name, candidate.born, candidate.running, candidate.identity, candidate.img]);
+                [candidate.name, candidate.born, candidate.running, candidateType.type_id, candidate.img]);
 
             })
         );
