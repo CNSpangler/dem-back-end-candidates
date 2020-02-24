@@ -24,10 +24,11 @@ async function run() {
                 name VARCHAR(256) NOT NULL,
                 born INTEGER NOT NULL,
                 running BOOLEAN NOT NULL,
-                type VARCHAR(256) NOT NULL,
+                type INTEGER NOT NULL REFERENCES types(type_id),
                 img VARCHAR(256) NOT NULL
             );
         `);
+        // 85% sure the type_id should work
 
         console.log('create tables complete');
     }
