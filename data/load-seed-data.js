@@ -38,7 +38,7 @@ async function run() {
                 // });
                 // console.log(candidateType);
 
-                // This is the query to insert a cat into the db.
+                // This is the query to insert a candidate into the db.
                 // First argument is the function is the "parameterized query"
                 return client.query(`
                     INSERT INTO candidates (name, born, running, type, img)

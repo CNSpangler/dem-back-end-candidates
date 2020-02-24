@@ -42,7 +42,7 @@ app.get('/api/candidates', async(req, res) => {
                 name,
                 born,
                 running,
-                identity,
+                type,
                 img
             FROM CANDIDATES;
         `);
