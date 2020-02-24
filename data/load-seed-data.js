@@ -51,7 +51,6 @@ async function run() {
                 `,
                     // Second argument is an array of values for each parameter in the query:
                 [candidate.name, candidate.born, candidate.running, candidateType.type_id, candidate.img]);
-
             })
         );
 

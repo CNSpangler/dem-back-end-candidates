@@ -72,6 +72,32 @@ app.get('/api/types', async(req, res) => {
     }
 });
 
+app.get('/api/candidates/:candidateId', async(req, res) => {
+    try {
+        const itemId = req.params.candidateId;
+        const result = await client.query(`
+            SELECT *
+            FROM candidates
+            WHERE id=$1
+        `, [itemId]);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
+
+
+app.get('*', (req, res) => {
+    res.json({
+        error: '404: Ballot Tampering In Progress',
+        status: 404
+    });
+});
+
+
 // http method and path...
 
 

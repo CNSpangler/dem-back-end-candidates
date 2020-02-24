@@ -28,7 +28,6 @@ async function run() {
                 img VARCHAR(256) NOT NULL
             );
         `);
-        // 85% sure the type_id should work
 
         console.log('create tables complete');
     }
