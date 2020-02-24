@@ -23,9 +23,8 @@ async function run() {
                 id SERIAL PRIMARY KEY NOT NULL,
                 name VARCHAR(256) NOT NULL,
                 born INTEGER NOT NULL,
-                type_id INTEGER NOT NULL REFERENCES types(type_id),
                 running BOOLEAN NOT NULL,
-                identity VARCHAR(256) NOT NULL,
+                type VARCHAR(256) NOT NULL,
                 img VARCHAR(256) NOT NULL
             );
         `);
