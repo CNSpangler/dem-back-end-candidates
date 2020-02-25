@@ -86,7 +86,6 @@ app.get('/api/candidates/:candidateId', async(req, res) => {
 
 app.post('/api/candidates', async(req, res) => {
     try {
-        const itemId = req.params.candidateId;
         const result = await client.query(`
             INSERT INTO candidates,
             VALUES ($1, $2, $3, $4, $5)
