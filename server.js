@@ -84,6 +84,23 @@ app.get('/api/candidates/:candidateId', async(req, res) => {
     }
 });
 
+app.post('/api/candidates', async(req, res) => {
+    try {
+        const itemId = req.params.candidateId;
+        const result = await client.query(`
+            INSERT INTO candidates,
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING *;
+        `,
+        [req.body.name, req.body.running, req.body.img, req.body.type, req.body.born]);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
 app.get('*', (req, res) => {
     res.json({
         error: '404: Ballot Tampering In Progress',
