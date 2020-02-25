@@ -87,7 +87,7 @@ app.get('/api/candidates/:candidateId', async(req, res) => {
 app.post('/api/candidates', async(req, res) => {
     try {
         const result = await client.query(`
-            INSERT INTO candidates,
+            INSERT INTO candidates(name, running, img, type, born),
             VALUES ($1, $2, $3, $4, $5)
             RETURNING *;
         `,
