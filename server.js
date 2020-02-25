@@ -86,14 +86,14 @@ app.get('/api/candidates/:candidateId', async(req, res) => {
 
 app.post('/api/candidates', async(req, res) => {
     try {
-        console.log(req.body);
+        console.log(req);
         const result = await client.query(`
             INSERT INTO candidates(name, running, img, type, born)
             VALUES ($1, $2, $3, $4, $5)
             RETURNING *;
         `,
         [req.body.name, req.body.running, req.body.img, req.body.type, req.body.born]);
-        res.json(result.rows);
+        res.json(result.rows[0]);
     } catch (err) {
         res.status(500).json({
             error: err.message || err
