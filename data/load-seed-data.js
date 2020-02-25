@@ -1,6 +1,3 @@
-//seed data for types won't fucking work
-//needs 'distinct' to work somehow
-
 require('dotenv').config();
 const pg = require('pg');
 const Client = pg.Client;

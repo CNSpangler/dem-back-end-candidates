@@ -1,8 +1,3 @@
-// Fri morning: finished load-seed-data
-    // build database
-    // create endpoints, etc.
-    // FRONT END, BITCHES!
-
 // have installed superagent, supertest, express, nodemon, jest, dotenv, cors
 // Load Environment Variables from the .env file
 
@@ -88,18 +83,12 @@ app.get('/api/candidates/:candidateId', async(req, res) => {
     }
 });
 
-
-
 app.get('*', (req, res) => {
     res.json({
         error: '404: Ballot Tampering In Progress',
         status: 404
     });
 });
-
-
-// http method and path...
-
 
 // Start the server
 // (use PORT from .env!)
