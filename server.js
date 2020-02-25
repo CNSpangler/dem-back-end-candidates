@@ -34,6 +34,7 @@ app.get('/api/candidates', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT
+                id,
                 name,
                 born,
                 running,
